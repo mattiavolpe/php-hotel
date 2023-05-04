@@ -101,15 +101,19 @@ Se non viene specificato nessun filtro, visualizzare come in precedenza tutti gl
         <?php foreach ($hotels as $hotel) : 
           if (($parking === null || $hotel["parking"]) && ($rating === null || $hotel["vote"] >= $rating)) : ?>
         <tr>
-          <?php foreach ($hotel as $field) : ?>
+          <?php foreach ($hotel as $key => $field) : ?>
           <td class="text-center px-3 py-2 border border-dark">
-            <?php if ($field !== true && $field !== false) {
+            <?php 
+            if ($key === "distance_to_center") {
+              echo "$field"."km";
+            } elseif ($field !== true && $field !== false) {
               echo $field;
             } elseif ($field === true) {
               echo "Yes";
             } else {
               echo "No";
-            } ?>
+            }
+            ?>
           </td>
           <?php endforeach; ?>
         </tr>
