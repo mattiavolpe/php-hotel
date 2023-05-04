@@ -59,17 +59,42 @@ Se non viene specificato nessun filtro, visualizzare come in precedenza tutti gl
     
     <!-- EXTERNAL BOOTSTRAP CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- PERSONAL EXTERNAL CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
         
     <title>Hotel</title>
   </head>
   
   <body>
     
-    <?php foreach($hotels as $hotel) : 
-      foreach($hotel as $field) : ?>
-      <p><?= $field ?></p>
-    <?php endforeach;
-    endforeach; ?>  
+    <table class="mx-auto my-5">
+      <thead>
+        <tr>
+          <th>Hotel name</th>
+          <th>Hotel description</th>
+          <th>Parking</th>
+          <th>Rating</th>
+          <th>Distance to center</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($hotels as $hotel) : ?>
+        <tr>
+          <?php foreach ($hotel as $field) : ?>
+            <td class="text-center px-3 py-2 border border-dark">
+              <?php if ($field !== true && $field !== false) {
+                echo $field;
+              } elseif ($field === true) {
+                echo "Yes";
+              } else {
+                echo "No";
+              } ?></td>
+          <?php endforeach; ?>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
     
   </body>
   
