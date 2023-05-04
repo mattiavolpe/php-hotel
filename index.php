@@ -47,6 +47,8 @@ Se non viene specificato nessun filtro, visualizzare come in precedenza tutti gl
       'distance_to_center' => 50
     ],
   ];
+  $rating = $_GET["rating"];
+  $parking = $_GET["parking"];
 ?>
 
 <!DOCTYPE html>
@@ -68,16 +70,18 @@ Se non viene specificato nessun filtro, visualizzare come in precedenza tutti gl
   
   <body>
 
+    <h1 class="my-5 text-uppercase text-center text-danger fw-bold">Hotels</h1>
+
     <form action="index.php" method="get" class="mx-auto w-50 text-center my-5">
       <div class="form-check p-0 text-center mb-5">
         <label class="form-check-label mb-2" for="parking">Has parking</label>
         <br>
-        <input class="form-check-input m-0" name="parking" type="checkbox" id="parking">
+        <input class="form-check-input m-0" name="parking" type="checkbox" id="parking" value="true">
       </div>
       <div class="mb-5">
         <label for="rating" class="form-label mb-2">Rating (0 - 5)</label>
         <input type="number"
-          class="form-control mb-2" min="0" max="5" name="rating" id="rating" aria-describedby="ratingHelper" placeholder="Insert a rating">
+          class="form-control mb-2 w-25 mx-auto" min="0" max="5" name="rating" id="rating" aria-describedby="ratingHelper" placeholder="Insert a rating">
         <small id="ratingHelper" class="form-text text-muted m-0">Insert a rating</small>
       </div>
       <button type="submit" class="btn btn-primary">Filter</button>
@@ -94,7 +98,8 @@ Se non viene specificato nessun filtro, visualizzare come in precedenza tutti gl
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($hotels as $hotel) : ?>
+        <?php foreach ($hotels as $hotel) : 
+          if (($parking === null || $hotel["parking"]) && ($rating === null || $hotel["vote"] >= $rating)) : ?>
         <tr>
           <?php foreach ($hotel as $field) : ?>
           <td class="text-center px-3 py-2 border border-dark">
@@ -108,7 +113,7 @@ Se non viene specificato nessun filtro, visualizzare come in precedenza tutti gl
           </td>
           <?php endforeach; ?>
         </tr>
-        <?php endforeach; ?>
+        <?php endif; endforeach; ?>
       </tbody>
     </table>
     
