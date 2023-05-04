@@ -108,7 +108,7 @@ Se non viene specificato nessun filtro, visualizzare come in precedenza tutti gl
               echo $field."km";
             } elseif ($field !== true && $field !== false) {
               echo $field;
-            } elseif ($field === true) {
+            } elseif ($field) {
               echo "Yes";
             } else {
               echo "No";
