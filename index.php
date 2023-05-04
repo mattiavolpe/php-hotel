@@ -67,6 +67,21 @@ Se non viene specificato nessun filtro, visualizzare come in precedenza tutti gl
   </head>
   
   <body>
+
+    <form action="index.php" method="get" class="mx-auto w-50 text-center my-5">
+      <div class="form-check p-0 text-center mb-5">
+        <label class="form-check-label mb-2" for="parking">Has parking</label>
+        <br>
+        <input class="form-check-input m-0" name="parking" type="checkbox" id="parking">
+      </div>
+      <div class="mb-5">
+        <label for="rating" class="form-label mb-2">Rating (0 - 5)</label>
+        <input type="number"
+          class="form-control mb-2" min="0" max="5" name="rating" id="rating" aria-describedby="ratingHelper" placeholder="Insert a rating">
+        <small id="ratingHelper" class="form-text text-muted m-0">Insert a rating</small>
+      </div>
+      <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
     
     <table class="mx-auto my-5">
       <thead>
@@ -82,14 +97,15 @@ Se non viene specificato nessun filtro, visualizzare come in precedenza tutti gl
         <?php foreach ($hotels as $hotel) : ?>
         <tr>
           <?php foreach ($hotel as $field) : ?>
-            <td class="text-center px-3 py-2 border border-dark">
-              <?php if ($field !== true && $field !== false) {
-                echo $field;
-              } elseif ($field === true) {
-                echo "Yes";
-              } else {
-                echo "No";
-              } ?></td>
+          <td class="text-center px-3 py-2 border border-dark">
+            <?php if ($field !== true && $field !== false) {
+              echo $field;
+            } elseif ($field === true) {
+              echo "Yes";
+            } else {
+              echo "No";
+            } ?>
+          </td>
           <?php endforeach; ?>
         </tr>
         <?php endforeach; ?>
