@@ -105,7 +105,7 @@ Se non viene specificato nessun filtro, visualizzare come in precedenza tutti gl
           <td class="text-center px-3 py-2 border border-dark">
             <?php 
             if ($key === "distance_to_center") {
-              echo "$field"."km";
+              echo $field."km";
             } elseif ($field !== true && $field !== false) {
               echo $field;
             } elseif ($field === true) {
